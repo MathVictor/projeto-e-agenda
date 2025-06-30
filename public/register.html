@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Registrar Usuário</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Registro</h1>
+    <form id="registerForm">
+      <input type="text" id="username" placeholder="Nome de usuário" required>
+      <input type="password" id="password" placeholder="Senha" required>
+      <button type="submit">Registrar</button>
+    </form>
+    <p>Já tem conta? <a href="/login">Login</a></p>
+  </div>
+
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+
+      try {
+        const res = await fetch('/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        if (!res.ok) {
+          const errorText = await res.text();
+          throw new Error(errorText || 'Erro no registro');
+        }
+
+        alert('Registrado com sucesso!');
+        window.location.href = '/login';
+      } catch (err) {
+        alert('Erro ao registrar: ' + err.message);
+      }
+    });
+  </script>
+</body>
+</html>

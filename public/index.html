@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agenda Eletrônica</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>📅 Agenda Eletrônica</h1>
+
+    <form id="eventForm">
+      <input type="text" id="title" placeholder="Título do evento" required />
+      <input type="datetime-local" id="date" required />
+      <button type="submit">💾 Salvar Evento</button>
+    </form>
+
+    <h2>🔍 Buscar compromissos</h2>
+    <button id="searchBtn">Buscar meus eventos</button>
+
+    <div id="eventList" class="hidden"></div>
+  </div>
+
+  <!-- Popup -->
+  <div id="popupOverlay" class="hidden">
+    <div class="popup">
+      <h2>✅ Sucesso</h2>
+      <p>Evento salvo com sucesso!</p>
+      <button onclick="closePopup()">Fechar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
